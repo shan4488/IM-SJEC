@@ -658,6 +658,8 @@ void display(){
         writeOnScreen(430,45,0.8,0.1,0.1,"Shops");
 	//Staff parking
         writeOnScreen(320,62,0.8,0.1,0.1,"Staff Parking");
+        //Entrance Marking
+        writeOnScreen(248,3,0.0,1.0,0.0,"Entrance");
 
 
 
