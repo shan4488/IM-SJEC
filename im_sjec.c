@@ -581,7 +581,7 @@ void display(){
 	administration(240,120);//administration
 	ab1(240,253);//ab1
 	ideaLab(283,120);//ideaLab
-	generalParking(336,120,48,130,1.0,0.5,0.2);
+	generalParking(336,120,48,130,1.0,0.5,0.2);//students parking
 	generalBuilding(280,345,70,90,0.8,0.6,0.6);//Ebaha
 	generalBuilding(110,110,50,70,0.6,0.6,0.6);//chappel
         generalBuilding(120,218,40,40,0.6,0.6,0.6);//ccc
@@ -658,8 +658,6 @@ void display(){
         writeOnScreen(430,45,0.8,0.1,0.1,"Shops");
 	//Staff parking
         writeOnScreen(320,62,0.8,0.1,0.1,"Staff Parking");
-        //Entrance Marking
-        writeOnScreen(248,3,0.0,1.0,0.0,"Entrance");
 
 
 
@@ -811,6 +809,9 @@ void timer(){
 		if(yval<245 && civilFlag==1){
 			yval+=0.5;
 		}
+                if(yval>=245 && civilFlag==1){ //#BUG1 SOLVED: This is used to set the flag again to zero - after the execution
+                        civilFlag=0;
+                }
 
         }
 
@@ -917,6 +918,9 @@ void timer(){
 			yval+=0.5;
 			xval+=0.53;
 		}
+		if(yval>=270 && indFlag==1){//#BUG1 SOLVED: This is used to set the flag again to zero - after the execution
+			indFlag = 0;
+		}
 
         }
 
@@ -950,6 +954,12 @@ void timer(){
 			yval-=0.5;
 			xval+=0.07;
 		}
+                if(yval<=30 && breakFlag==1){//#BUG1 SOLVED: This is used to set the flag again to zero - after the execution
+                        breakFlag=0;
+			yval=29.0;//The above breakFlag should have solved the extra movement prob, but it couldn't so made one more condition false explicitly
+                }
+
+
 
        }
 
@@ -966,7 +976,7 @@ void timer(){
 	//	}
         }
 
-        //Canteen
+        //Students Parking
         if(moveFlag==20){
                 if(yval < 90.0 && breakFlag1==0){
                         yval+=0.5;
@@ -981,6 +991,10 @@ void timer(){
                         yval+=0.5;
                         xval-=0.07;
                 }
+                if(yval>=130 && breakFlag1==1){//#BUG1 SOLVED: This is used to set the flag again to zero - after the execution
+                        breakFlag1=0;
+                }
+
 
        }
 
