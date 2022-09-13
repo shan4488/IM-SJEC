@@ -33,18 +33,7 @@ void path(int x1,int y1,int x2,int y2){
 
 }
 
-/*void writeOnScreen(int x, int y, float r, float g, float b, char *string)
-{
-  glColor3f( r, g, b );
-//  glScalef(1,1,1);
-  glRasterPos2f(210, 300);
-  int len, i;
-  len = (int)strlen(string);
-  for (i = 0; i < len; i++) {
-    glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, string[i]);
-  }
-}*/
-
+//function used to tag the buildings
 void writeOnScreen(int x, int y, float r, float g, float b, char *string)
 {
   glColor3f( r, g, b );
@@ -53,7 +42,7 @@ void writeOnScreen(int x, int y, float r, float g, float b, char *string)
 
 }
 
-
+//used to draw line on the map
 void drawLine(int x, int y, int x1, int y1, int thick, float r, float g, float b){
 	glColor3f(r,g,b);
 	glLineWidth(thick);
@@ -63,6 +52,7 @@ void drawLine(int x, int y, int x1, int y1, int thick, float r, float g, float b
 	glEnd();
 }
 
+//used to draw the road
 void roadLine(float x1, float y1, float x2, float y2,float width){
         glColor3f(0.0,0.0,1.0);
         glLineWidth(width);
@@ -73,6 +63,7 @@ void roadLine(float x1, float y1, float x2, float y2,float width){
 
 }
 
+//used to draw the new overlapping roads
 void roadLineNew(float x1, float y1, float x2, float y2,float width, float r, float g, float b){
         glColor3f(r,g,b);
         glLineWidth(width);
@@ -83,7 +74,7 @@ void roadLineNew(float x1, float y1, float x2, float y2,float width, float r, fl
 
 }
 
-
+//function that draws the complete roadlines or paths
 void wholeMap(){
         roadLine(260,10,260,100,80);//entrance
 	roadLine(260,100,170,100,60);//leftFromE
@@ -103,6 +94,7 @@ void wholeMap(){
 
 }
 
+//administration block
 void administration(float x, float y){
 	glColor3f(1.0,1.0,0.5);
 	glBegin(GL_POLYGON);
@@ -114,6 +106,7 @@ void administration(float x, float y){
 	glFlush();
 }
 
+//academic block 1
 void ab1(float x, float y){
         glColor3f(1.0,0.6,0.5);
         glBegin(GL_POLYGON);
@@ -125,6 +118,7 @@ void ab1(float x, float y){
         glFlush();
 }
 
+//idea lab
 void ideaLab(float x, float y){
         glColor3f(1.0,0.8,0.5);
         glBegin(GL_POLYGON);
@@ -136,6 +130,7 @@ void ideaLab(float x, float y){
         glFlush();
 }
 
+//general purpose function to draw the parking plot
 void generalParking(float x, float y, float xinc, float yinc, float red, float green, float blue){
         glColor3f(red, green, blue);
         glBegin(GL_POLYGON);
@@ -148,6 +143,7 @@ void generalParking(float x, float y, float xinc, float yinc, float red, float g
 
 }
 
+//general purpose function to draw the buildings
 void generalBuilding(float x, float y, float xinc, float yinc, float red, float green, float blue){
         glColor3f(red, green, blue);
         glBegin(GL_POLYGON);
@@ -172,6 +168,7 @@ void canteenAndShop(float x, float y, float xinc, float yinc, float red, float g
 
 }
 
+//Wellfare section
 void transHospBethania(float x, float y, float xinc, float yinc, float red, float green, float blue){
         glColor3f(red, green, blue);
         glBegin(GL_POLYGON);
@@ -184,6 +181,7 @@ void transHospBethania(float x, float y, float xinc, float yinc, float red, floa
 
 }
 
+//Academic block 3
 void aB3bend(float red, float green, float blue){
         glColor3f(red, green, blue);
         glBegin(GL_POLYGON);
@@ -199,6 +197,7 @@ void aB3bend(float red, float green, float blue){
 
 //define a cross section of the ab3 and civil after analysis phase
 
+// Play ground section
 void ground(int x, int y, int r){
 	glBegin(GL_TRIANGLE_FAN);
 	for(i=0;i<360;i++){
@@ -208,13 +207,14 @@ void ground(int x, int y, int r){
 	glEnd();
 }
 
-void reset(float x, float y){
+//to reset the location of the moving pointer
+void reset(float x, float y){	
 	xval = x;
 	yval = y;
 	moveBox();
 }
 
-
+//amphi theater
 void amphi(){
 
 	glColor3f(0.6,0.6,0.9);
@@ -233,6 +233,7 @@ void amphi(){
       	glEnd();
 }
 
+//Path highlighting choice router
 void fillMenu(int choice){
 //                xval = 255.0;
   //              yval = 10.0;
@@ -326,6 +327,7 @@ void fillMenu(int choice){
 
 }
 
+//path highlighting function
 void menuActions(){
 
 	//xval=255.0, yval=10.0;
@@ -550,6 +552,7 @@ void menuActions(){
 
 }
 
+//moving pointer
 void moveBox(){
         glLoadIdentity();
         glBegin(GL_POLYGON);
@@ -574,6 +577,7 @@ void reshape(int w, int h){
         glMatrixMode(GL_MODELVIEW);
 }
 
+//complete map representation
 void display(){
         glClear(GL_COLOR_BUFFER_BIT);
 	//path(200,0,200,900);
@@ -1020,7 +1024,7 @@ void main(int argc, char** argv){
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);//for movement-optional used for reshape adjustment of application
 	glutTimerFunc(0,timer,0);//used to redisplay and call the display at intervals
-	glutCreateMenu(fillMenu);
+	glutCreateMenu(fillMenu);//creates the menu
         glutAddMenuEntry("Administration", 1);
 	glutAddMenuEntry("AB3",2);
 	glutAddMenuEntry("Albertos", 3);
